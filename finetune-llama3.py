@@ -133,6 +133,9 @@ save_steps = 2000
 # Log every X updates steps
 logging_steps = 25
 
+#---added by MSP 05/30---
+eval_strategy = 'epoch'
+
 ################################################################################
 # SFT parameters
 ################################################################################
@@ -228,7 +231,8 @@ training_arguments = TrainingArguments(
     warmup_ratio=warmup_ratio,
     group_by_length=group_by_length,
     lr_scheduler_type=lr_scheduler_type,
-    report_to="wandb"
+    report_to="wandb",
+    eval_strategy=eval_strategy
 )
 
 # Set supervised fine-tuning parameters
