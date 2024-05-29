@@ -4,7 +4,7 @@ from vllm import LLM, SamplingParams
 from transformers import AutoTokenizer
 
 DATASETS_FOLDER = '/home/madee/PhytoChat/webcrawled-info'
-SYSTEM_PROMPT = """Generate 5 unique question-answer pairs from the following text, along with a positive response and a negative response for each question. Format: Q: <question> Pos: <positive answer> Neg: <negative answer>"""
+SYSTEM_PROMPT = """Generate 10 unique question-answer pairs from the following text, along with a positive response and a negative response for each question. Format: Q: <question> Pos: <positive answer> Neg: <negative answer>"""
 
 def generate_prompt(context, tokenizer):
     """
@@ -26,7 +26,9 @@ def generate_qa_pairs(prompts, model, sampling_params):
     try:
         responses = model.generate(prompts, sampling_params)
         for response in responses:
-            qa_pairs = response.outputs[0].text.split('\n\n')  # Split by double newlines to separate each Q-A pair
+            response = response.outputs[0].text
+            response = response.replace('(Positive)', '').replace('(Negative)', '')
+            qa_pairs = response.split('\n\n') # Split by double newlines to separate each Q-A pair
             for pair in qa_pairs:
                 lines = pair.split('\n')
                 prompt, chosen, rejected = None, None, None
@@ -38,7 +40,7 @@ def generate_qa_pairs(prompts, model, sampling_params):
                     elif line.startswith('Neg:'):
                         rejected = line[5:].strip()  # Remove 'Neg: ' prefix
                 if prompt and chosen and rejected:
-                    dataset.append({'questions': prompt, 'chosen': chosen, 'rejected': rejected})
+                    dataset.append({'prompt': prompt, 'chosen': chosen, 'rejected': rejected})
     except Exception as e:
         print(f"Error during model generation: {e}")
     return dataset
