@@ -1,7 +1,7 @@
 import random
 import json
 
-test_len = 2
+test_len = 1573
 
 with open('data/dpo/qa_TRL_dataset.json', 'r') as f:
     data = json.load(f)

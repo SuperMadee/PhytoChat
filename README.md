@@ -1,6 +1,17 @@
-# PhytoChat
+# PhytoChat: A Multi-Turn RL-Based LLM for Diagnosis and Treatment of Plant Diseases
 
-### Crawl sites using GPT-Crawler
+### Install Dependencies
+```!pip install -r requirements.txt```
+
+### Set CUDA Device(s)
+```
+import os
+os.environ['CUDA_VISIBLE_DEVICES'] = '2'
+os.environ['HF_TOKEN'] = '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'
+```
+
+### Dataset Generation
+1. Crawl data from the internet using GPT-Crawler
 
 Set up a `conda` environment, install `nodejs` in it, and install dependencies.
 
