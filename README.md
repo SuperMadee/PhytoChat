@@ -42,4 +42,49 @@ os.environ['HF_TOKEN'] = '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'
    a.2. Crawl data from the internet using the ```Trafilatura``` Library. Check the ```crawl_webpages.py``` for the full code version. <br>
    b. Read and parse content from the PDF files using the ```parse_pdfs.py``` file. <br>
 
-3. 
+2. For the SFT dataset generation, use:
+   ```ts
+   !python generate_sft_data.py
+   ```
+   
+3. For the DPO and ArCHer dataset generation, use:
+   ```ts
+   !python generate_dpo_data.py
+   !python generate_conversations.py
+   !python generate_dpo_data_multi_turn.py
+   !python combine_split_dpo_data.py
+   ```
+
+### Training
+#### Using SFT dataset:
+
+```ts
+!python finetune_sft_llama.py
+!python finetune_sft_mistral.py
+```
+
+#### Using DPO dataset:
+```ts
+!python finetune_dpo_llama.py
+!python finetune_dpo_mistral.py
+```
+
+#### Accessing ArCHer codes:
+```ts
+!cd ArCHer/archer
+!python scripts/run.py --config-name archer_phytochat
+```
+
+### Making Predictions
+```ts
+!python generate_predictions_sft.py
+!python generate_predictions_dpo.py
+!python generate_predictions_archer_sft.py
+!python generate_predictions_archer_dpo.py
+```
+
+### Model Evaluation by obtaining METEOR and BLEU scores
+```ts
+!python evaluate_models.py
+```
+
