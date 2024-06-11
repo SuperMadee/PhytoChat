@@ -1,0 +1,36 @@
+# Adversarial Attack Config
+defaults:
+  - default
+  - _self_
+
+# checkpoint
+checkpoint_path: null
+save_path: '/raid/ovod/playground/data/jessan/phytochat/ArCHer/checkpoints/phytochat_llama_dpo'
+save_freq: 1
+
+# env
+agent_type: 'archer_llm'
+policy_lm : 'meta-llama/Meta-Llama-3-8B-Instruct'
+max_new_tokens: 128
+use_lora: True
+eos_str: null
+env_name: guess_my_city
+env_load_path: '/raid/ovod/playground/data/jessan/ArCHer/dataset/ArCHer_public/city_t5_oracle.pt'
+
+# training hyperparameters
+capacity: 10 #replay buffer size
+rollout_size: 32 #number of rollout trajectories for each update
+eval_size: 32 #number of trajectories for evaluation
+batch_size: 2
+iterations: 100 #total number of iterations
+epochs: 1 #number of epochs for the critic each iteration
+actor_epochs: 1 #number of epochs for the actor each iteration
+warmup_iter: 0 #number of iterations without updating the policy
+grad_accum_steps: 4
+critic_lr: 2e-5
+lm_lr: 1e-5
+
+# wandb logging
+use_wandb: True
+project_name: 'llm_rl_city'
+run_name: 'archer-acc'
