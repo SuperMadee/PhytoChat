@@ -34,13 +34,12 @@ os.environ['HF_TOKEN'] = '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'
      maxTokens: 2000000,
      };
      ```
+   * Run the crawl
+     ```bash
+     npm start
+     ```
 
-  * Run the crawl
-    ```bash
-    npm start
-    ```
-  
-  a.2. Crawl data from the internet using the ```Trafilatura``` Library. Check the ```crawl_webpages.py``` for the full code version. <br>
-  b. Read and parse content from the PDF files using the ```parse_pdfs.py``` file.
+   a.2. Crawl data from the internet using the ```Trafilatura``` Library. Check the ```crawl_webpages.py``` for the full code version. <br>
+   b. Read and parse content from the PDF files using the ```parse_pdfs.py``` file. <br>
 
-2. 
+3. 
